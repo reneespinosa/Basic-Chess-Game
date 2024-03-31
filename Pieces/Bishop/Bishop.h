@@ -2,6 +2,7 @@
 #define BISHOP_H
 
 #include "../Piece.h"
+using namespace std;
 
 class Bishop : public Piece {
 public:
@@ -10,6 +11,8 @@ public:
 
     // Destructor
     ~Bishop() override;
+
+    bool validateMove(pair<int, int> new_position) override;
 };
 
 #endif // BISHOP_H

@@ -109,11 +109,11 @@ build CMakeFiles/untitled.dir/Board/Board.cpp.o: CXX_COMPILER__untitled_unscanne
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir/Board
 
-build CMakeFiles/untitled.dir/Game.cpp.o: CXX_COMPILER__untitled_unscanned_Debug /home/user/CLionProjects/untitled/Game.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles/untitled.dir/Game.cpp.o.d
+build CMakeFiles/untitled.dir/Game/Game.cpp.o: CXX_COMPILER__untitled_unscanned_Debug /home/user/CLionProjects/untitled/Game/Game.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles/untitled.dir/Game/Game.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles/untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles/untitled.dir/Game
 
 
 # =============================================================================
@@ -123,7 +123,7 @@ build CMakeFiles/untitled.dir/Game.cpp.o: CXX_COMPILER__untitled_unscanned_Debug
 #############################################
 # Link the executable untitled
 
-build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.cpp.o CMakeFiles/untitled.dir/Pieces/Piece.cpp.o CMakeFiles/untitled.dir/Pieces/Pawn/Pawn.cpp.o CMakeFiles/untitled.dir/Pieces/Knight/Knight.cpp.o CMakeFiles/untitled.dir/Pieces/Bishop/Bishop.cpp.o CMakeFiles/untitled.dir/Pieces/Rook/Rook.cpp.o CMakeFiles/untitled.dir/Pieces/Queen/Queen.cpp.o CMakeFiles/untitled.dir/Pieces/King/King.cpp.o CMakeFiles/untitled.dir/Player/Player.cpp.o CMakeFiles/untitled.dir/Board/Board.cpp.o CMakeFiles/untitled.dir/Game.cpp.o
+build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.cpp.o CMakeFiles/untitled.dir/Pieces/Piece.cpp.o CMakeFiles/untitled.dir/Pieces/Pawn/Pawn.cpp.o CMakeFiles/untitled.dir/Pieces/Knight/Knight.cpp.o CMakeFiles/untitled.dir/Pieces/Bishop/Bishop.cpp.o CMakeFiles/untitled.dir/Pieces/Rook/Rook.cpp.o CMakeFiles/untitled.dir/Pieces/Queen/Queen.cpp.o CMakeFiles/untitled.dir/Pieces/King/King.cpp.o CMakeFiles/untitled.dir/Player/Player.cpp.o CMakeFiles/untitled.dir/Board/Board.cpp.o CMakeFiles/untitled.dir/Game/Game.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/untitled.dir
   POST_BUILD = :

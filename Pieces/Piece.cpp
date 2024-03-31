@@ -1,33 +1,33 @@
 #include "Piece.h"
 
-
+// Constructor
 Piece::Piece(string type, int color) : type(type), color(color) {}
 
-
-// Destructor virtual
+// Destructor
 Piece::~Piece() {}
-
-// Método virtual para mover la pieza
-
-void Piece::move (pair<int, int> new_position) {
-    position.first = new_position.first;
-    position.second = new_position.second;
-}
-
 
 // Métodos Get para acceder a los atributos
 
-string Piece::getType()
-{
+string Piece::getType() {
     return type;
 }
 
-int Piece::getColor()
-{
+int Piece::getColor() {
     return color;
 }
 
-pair<int,int> Piece::getPosition()
-{
+pair<int, int> Piece::getPosition() {
     return position;
+}
+
+void Piece::setPosition(pair<int, int> new_position) {
+    position = new_position;
+}
+
+void Piece::setType(string new_type) {
+    type = new_type;
+}
+
+void Piece::setColor(int new_color) {
+    color = new_color;
 }

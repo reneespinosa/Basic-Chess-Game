@@ -2,6 +2,9 @@
 #define QUEEN_H
 
 #include "../Piece.h"
+using namespace std;
+
+
 
 class Queen : public Piece {
 public:
@@ -10,6 +13,8 @@ public:
 
     // Destructor
     ~Queen() override;
+    bool validateMove(pair<int, int> new_position) override;
+
 };
 
 #endif // QUEEN_H
