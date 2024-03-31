@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: chess
+# Project: untitled
 # Configurations: Debug
 # =============================================================================
 # =============================================================================
@@ -14,7 +14,7 @@
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__chess_unscanned_Debug
+rule CXX_COMPILER__untitled_unscanned_Debug
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}/usr/bin/c++ $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -24,7 +24,7 @@ rule CXX_COMPILER__chess_unscanned_Debug
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__chess_Debug
+rule CXX_EXECUTABLE_LINKER__untitled_Debug
   command = $PRE_LINK && /usr/bin/c++ $FLAGS $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /home/user/Back-End/C++/Software/clion-2023.3.4/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/user/CLionProjects/chess -B/home/user/CLionProjects/chess/cmake-build-debug
+  command = /home/user/Back-End/C++/Software/clion-2023.3.4/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/user/CLionProjects/untitled -B/home/user/CLionProjects/untitled/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 
