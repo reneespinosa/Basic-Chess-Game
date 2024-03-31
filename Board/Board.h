@@ -3,17 +3,18 @@
 
 #include <vector>
 #include <utility>
-#include "piece.h"
-#include "pawn.h"
-#include "rook.h"
-#include "knight.h"
-#include "bishop.h"
-#include "queen.h"
-#include "king.h"
+#include "../Pieces/Pawn/Pawn.h"
+#include "../Pieces/Rook/Rook.h"
+#include "../Pieces/Knight/Knight.h"
+#include "../Pieces/Bishop/Bishop.h"
+#include "../Pieces/Queen/Queen.h"
+#include "../Pieces/King/King.h"
+
+using namespace std;
 
 class Board {
 private:
-    std::vector<std::vector<Piece*>> board; // Tablero de juego
+    vector<vector<Piece*>> board; // Tablero de juego
 
 public:
     // Constructor

@@ -1,16 +1,15 @@
 #ifndef KNIGHT_H
 #define KNIGHT_H
 
-#include "piece.h";
-
+#include "../Piece.h"
 
 class Knight : public Piece {
 public:
     // Constructor
-    Knight(int color) : Piece("Knight", color) {}
+    Knight(int color);
 
     // Destructor
-    ~Knight() {}
+    ~Knight() override;
 };
 
-#endif
+#endif // KNIGHT_H

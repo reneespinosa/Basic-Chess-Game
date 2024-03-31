@@ -1,8 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "board.h" // Incluimos el archivo de encabezado de la clase Board
-#include "player.h" // Incluimos el archivo de encabezado de la clase Player
+#include "../Board/Board.h"
+#include "../Player/Player.h"
 
 class Game {
 private:

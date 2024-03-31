@@ -1,16 +1,15 @@
 #ifndef PAWN_H
 #define PAWN_H
 
-#include "piece.h";
-
+#include "../Piece.h"
 
 class Pawn : public Piece {
 public:
     // Constructor
-    Pawn(int color) : Piece("Pawn", color) {}
-    
+    Pawn(int color);
+
     // Destructor
-    ~Pawn() {}
+    ~Pawn() override;
 };
 
-#endif
+#endif // PAWN_H

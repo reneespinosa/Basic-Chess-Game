@@ -1,16 +1,15 @@
 #ifndef QUEEN_H
 #define QUEEN_H
 
-#include "piece.h";
-
+#include "../Piece.h"
 
 class Queen : public Piece {
 public:
     // Constructor
-    Queen(int color) : Piece("Queen", color) {}
+    Queen(int color);
 
     // Destructor
-    ~Queen() {}
+    ~Queen() override;
 };
 
-#endif
+#endif // QUEEN_H

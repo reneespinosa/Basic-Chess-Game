@@ -1,16 +1,15 @@
 #ifndef ROOK_H
 #define ROOK_H
 
-#include "piece.h";
-
+#include "../Piece.h"
 
 class Rook : public Piece {
 public:
     // Constructor
-    Rook(int color) : Piece("Rook", color) {}
+    Rook(int color);
 
     // Destructor
-    ~Rook() {}
+    ~Rook() override;
 };
 
-#endif
+#endif // ROOK_H

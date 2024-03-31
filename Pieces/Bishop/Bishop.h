@@ -1,17 +1,15 @@
 #ifndef BISHOP_H
 #define BISHOP_H
 
-#include "piece.h";
-
+#include "../Piece.h"
 
 class Bishop : public Piece {
 public:
     // Constructor
-    Bishop(int color) : Piece("Bishop", color) {}
+    Bishop(int color);
 
     // Destructor
-    ~Bishop() {}
+    ~Bishop() override;
 };
 
-#endif
-
+#endif // BISHOP_H
