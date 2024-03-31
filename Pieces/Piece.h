@@ -8,31 +8,33 @@
 using namespace std;
 
 class Piece {
-
-protected :
+protected:
     string type;
     int color;
     pair<int, int> position;
 
-
 public:
     // Constructor
-    Piece(string type , int color);
+    Piece(string type, int color);
 
     // Destructor virtual
     virtual ~Piece();
 
-    // Método virtual para mover la pieza
-    virtual void move(pair<int, int> new_position);
+    // Método virtual puro para validar un movimiento
+    virtual bool validateMove(pair<int, int> new_position);
 
     // Métodos Get para acceder a los atributos
-
     string getType();
-
     int getColor();
-
     pair<int,int> getPosition();
+
+
+    // Métodos Set para acceder a los atributos
+
+    void setPosition(pair<int, int> new_position);
+    void setType(string new_type);
+    void setColor(int new_color);
 
 };
 
-#endif
+#endif // PIECE_H

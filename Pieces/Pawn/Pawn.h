@@ -2,6 +2,8 @@
 #define PAWN_H
 
 #include "../Piece.h"
+using namespace std;
+
 
 class Pawn : public Piece {
 public:
@@ -9,7 +11,10 @@ public:
     Pawn(int color);
 
     // Destructor
-    ~Pawn() override;
+    ~Pawn();
+
+    // Método para validar un movimiento del peón
+    bool validateMove(pair<int, int> new_position) override;
 };
 
 #endif // PAWN_H
