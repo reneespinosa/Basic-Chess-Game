@@ -24,3 +24,9 @@ bool Knight::validateMove(pair<int, int> new_position) {
         return false;
 
 }
+
+
+string Knight::getSymbol()
+{
+    return (color == 1) ? "♞" : "♘";
+}

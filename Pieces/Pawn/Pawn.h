@@ -15,6 +15,8 @@ public:
 
     // Método para validar un movimiento del peón
     bool validateMove(pair<int, int> new_position) override;
+
+    string getSymbol() override;
 };
 
 #endif // PAWN_H

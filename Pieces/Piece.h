@@ -21,7 +21,9 @@ public:
     virtual ~Piece();
 
     // Método virtual puro para validar un movimiento
-    virtual bool validateMove(pair<int, int> new_position);
+    virtual bool validateMove(pair<int, int> new_position) = 0;
+    virtual string getSymbol() = 0;
+
 
     // Métodos Get para acceder a los atributos
     string getType();

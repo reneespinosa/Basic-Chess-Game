@@ -28,3 +28,7 @@ bool King::getMoved() {
 void King::setMoved(bool moved_status) {
     moved = moved_status;
 }
+
+string King::getSymbol() {
+    return (color == 1) ? "♚" : "♔";
+}

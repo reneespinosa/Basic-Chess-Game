@@ -12,3 +12,8 @@ bool Bishop::validateMove(pair<int, int> new_position) {
     int col_diff = abs(new_position.second - position.second);
     return row_diff == col_diff; // El movimiento es válido si la diferencia entre filas y columnas es la misma
 }
+
+string Bishop::getSymbol()
+{
+    return (color == 1) ? "♝" : "♗";
+}

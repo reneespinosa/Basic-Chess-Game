@@ -12,6 +12,7 @@ public:
     // Destructor
     ~Bishop() override;
 
+    string getSymbol() override;
     bool validateMove(pair<int, int> new_position) override;
 };
 

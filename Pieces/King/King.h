@@ -18,6 +18,8 @@ public:
 
 
     bool validateMove(pair<int, int> new_position) override;
+    string getSymbol() override;
+
 
     // Método para obtener el estado de movimiento del rey
     bool getMoved();

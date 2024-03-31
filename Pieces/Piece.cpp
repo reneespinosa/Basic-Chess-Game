@@ -31,3 +31,5 @@ void Piece::setType(string new_type) {
 void Piece::setColor(int new_color) {
     color = new_color;
 }
+
+

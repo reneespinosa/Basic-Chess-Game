@@ -50,3 +50,9 @@ bool Rook::validateMove(pair<int, int> new_position){
     // Si no cumple ninguna de las condiciones anteriores, el movimiento es inválido
     return false;
 }
+
+string Rook::getSymbol()
+{
+    return (color == 1) ?     "♜" : "♖";
+
+}

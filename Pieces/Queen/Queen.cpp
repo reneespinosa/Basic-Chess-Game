@@ -34,3 +34,7 @@ bool Queen::validateMove(std::pair<int, int> new_position) {
 
     return false;
 }
+
+string Queen::getSymbol() {
+    return (color == 1) ? "♛" : "♕";
+}

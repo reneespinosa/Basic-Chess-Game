@@ -34,3 +34,7 @@ bool Pawn::validateMove(pair<int, int> new_position) {
     // Si no cumple ninguna de las condiciones anteriores, el movimiento es inválido
     return false;
 }
+
+string Pawn::getSymbol() {
+    return (color == 1) ? "♟" : "♙";
+}

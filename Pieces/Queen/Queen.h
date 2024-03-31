@@ -14,6 +14,7 @@ public:
     // Destructor
     ~Queen() override;
     bool validateMove(pair<int, int> new_position) override;
+    string getSymbol() override ;
 
 };
 

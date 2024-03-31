@@ -3,6 +3,10 @@
 
 #include <vector>
 #include <utility>
+#include <iostream>
+#include <iomanip>
+
+
 #include "../Pieces/Pawn/Pawn.h"
 #include "../Pieces/Rook/Rook.h"
 #include "../Pieces/Knight/Knight.h"
@@ -24,7 +28,7 @@ public:
     ~Board();
 
     // Método para imprimir el tablero de juego en consola
-    void print() const;
+    void print() ;
 
     // Método para mover una pieza en el tablero
     bool movePiece(const std::pair<int, int>& from, const std::pair<int, int>& to);

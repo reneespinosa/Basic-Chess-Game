@@ -1,6 +1,14 @@
-#include <iostream>
+#include "Board/Board.h"
+
+
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    cout << "Hello, World!" << endl;
+
+    auto* tablero = new Board();
+
+
+    tablero->print();
+
     return 0;
 }
