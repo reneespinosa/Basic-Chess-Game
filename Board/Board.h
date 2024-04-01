@@ -28,13 +28,22 @@ public:
     ~Board();
 
     // Método para imprimir el tablero de juego en consola
-    void print() ;
-
-    // Método para mover una pieza en el tablero
-    bool movePiece(const std::pair<int, int>& from, const std::pair<int, int>& to);
+    void print(bool isBlackPerspective) ;
 
     // Método para obtener la pieza en una posición específica del tablero
-    Piece* getPieceAt(const std::pair<int, int>& position) const;
+    Piece* getPieceAt(int row ,int col);
+
+    bool checkPathClear(pair<int, int> start, pair<int, int> end);
+
+    bool canMoveToSquare(pair<int, int> position, int color);
+
+    bool isValidMove(pair<int, int> start, pair<int, int> end, int color);
+
+    void promotePawn(pair<int, int> position, int newPieceType, int color);
+
+    bool movePiece(pair<int, int> start, pair<int, int> end, int color);
+
+
 };
 
 #endif // BOARD_H
