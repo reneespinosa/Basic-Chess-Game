@@ -3,33 +3,38 @@
 
 #include "../Board/Board.h"
 #include "../Player/Player.h"
+#include <map>
 
 class Game {
 private:
-    Board board; // Tablero de juego
-    Player players[2]; // Jugadores (en un juego de dos jugadores)
-    int currentPlayer; // Índice del jugador actual (0 o 1)
-    bool gameOver; // Indica si el juego ha terminado
+    Board* board;
+    Player players[2];
+    int currentPlayer;
+    bool gameOver;
+    int moveCount; // Contador de movimientos para el empate por 50 movimientos sin captura
+    map<Board*, int[2]> history_of_board; // Cambiar el tipo de datos clave del mapa
+    pair<int,int> Pawn_enPassantable;
 
 public:
-    // Constructor
-    Game(const std::string& player1Name, const std::string& player2Name);
+    Game(string player1Name, string player2Name);
+    ~Game();
 
-    // Método para iniciar el juego
-    void start();
+    void playMove(); // Método para manejar el turno del jugador actual
+    bool isDraw(); // Método para verificar si hay empate
+    bool isInsufficientMaterial(); // Método para verificar si hay insuficiencia de material
+    bool isStalemate(int Playercolor); // Método para verificar si hay jaque al rey
+    bool isCheckmate(int color ); // Método para verificar si hay jaque mate
+    bool getgameOver();
 
 private:
-    // Método para cambiar el turno al siguiente jugador
-    void nextTurn();
-
-    // Método para verificar si hay un ganador
-    bool checkWinner() const;
-
-    // Método para imprimir el estado actual del juego
-    void printGameState() const;
-
-    // Método para procesar el turno del jugador actual
-    void processTurn();
+    void switchTurn(); // Método para cambiar el turno al siguiente jugador
+    bool isValidMove(pair<int, int> start,pair<int, int> end, int color);  // Método para verificar si un movimiento es válido
+    bool processMove(pair<char, int> start, pair<char, int> end); // Método para procesar un movimiento dado
+    bool isCheck(Board* board1); // Método para verificar si el rey actual está en jaque
+    bool detectCastle(pair<int,int>start,pair<int,int>end); //Metodo para detectar enroque
+    bool isValidCastle(pair<int, int> end);
+    void makeCastle(pair<int, int> end);
+    void registerBoard(Board* boardclone, int currentPlayer);
 };
 
 #endif // GAME_H

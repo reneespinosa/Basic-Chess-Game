@@ -11,7 +11,7 @@ bool Rook::getMoved()  {
 }
 
 bool Rook::getCrowned() {
-    return moved;
+    return crowned;
 }
 
 void Rook::setMoved(bool has_moved)  {
@@ -53,6 +53,6 @@ bool Rook::validateMove(pair<int, int> new_position){
 
 string Rook::getSymbol()
 {
-    return (color == 1) ?     "♜" : "♖";
+    return (color == 0) ?     "♜" : "♖";
 
 }

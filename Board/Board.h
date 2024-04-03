@@ -33,6 +33,8 @@ public:
     // Método para obtener la pieza en una posición específica del tablero
     Piece* getPieceAt(int row ,int col);
 
+
+
     bool checkPathClear(pair<int, int> start, pair<int, int> end);
 
     bool canMoveToSquare(pair<int, int> position, int color);
@@ -41,8 +43,14 @@ public:
 
     void promotePawn(pair<int, int> position, int newPieceType, int color);
 
-    bool movePiece(pair<int, int> start, pair<int, int> end, int color);
+    void movePiece(pair<int, int> start, pair<int, int> end, int color);
 
+    pair<int, int> getKingPosition(int color);
+
+    Board(const Board& other);
+    Board& operator=(const Board& other);
+
+    Board* clone();
 
 };
 

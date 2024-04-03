@@ -19,11 +19,7 @@ public:
     int getColor();
     string getNombre();
 
-    // Método para seleccionar la posición de la pieza a mover
-    pair<int, int> choosePiecePosition();
 
-    // Método para seleccionar la nueva posición
-    pair<int, int> chooseNewPosition();
 };
 
 #endif // PLAYER_H

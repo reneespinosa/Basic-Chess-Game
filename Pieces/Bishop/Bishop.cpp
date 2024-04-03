@@ -15,5 +15,5 @@ bool Bishop::validateMove(pair<int, int> new_position) {
 
 string Bishop::getSymbol()
 {
-    return (color == 1) ? "♝" : "♗";
+    return (color == 0) ? "♝" : "♗";
 }

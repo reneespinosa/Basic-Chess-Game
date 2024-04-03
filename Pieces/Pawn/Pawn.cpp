@@ -1,11 +1,10 @@
 #include "Pawn.h"
 
-Pawn::Pawn(int color) : Piece("Pawn", color) {}
+Pawn::Pawn(int color) : Piece("Pawn", color), moved(false) , enPassantable(false) {}
 
 Pawn::~Pawn() {}
 
 bool Pawn::validateMove(pair<int, int> new_position) {
-
     int new_row = new_position.first;
     int new_col = new_position.second;
 
@@ -14,7 +13,7 @@ bool Pawn::validateMove(pair<int, int> new_position) {
     int current_col = getPosition().second;
 
     // Determinar la dirección del movimiento según el color del peón
-    int direction = (color == 1) ? 1 : -1;
+    int direction = (color == 0) ? 1 : -1;
 
     // Validar movimiento hacia adelante (una casilla)
     if (new_col == current_col && new_row == current_row + direction) {
@@ -22,7 +21,7 @@ bool Pawn::validateMove(pair<int, int> new_position) {
     }
 
     // Validar movimiento de dos casillas en el primer paso
-    if (current_row == (color == 1 ? 1 : 6) && new_col == current_col && new_row == current_row + 2 * direction) {
+    if (!moved && (current_row == (color == 0 ? 1 : 6)) && new_col == current_col && new_row == current_row + 2 * direction) {
         return true;
     }
 
@@ -36,5 +35,25 @@ bool Pawn::validateMove(pair<int, int> new_position) {
 }
 
 string Pawn::getSymbol() {
-    return (color == 1) ? "♟" : "♙";
+    return (color == 0) ? "♟" : "♙";
+}
+
+bool Pawn::getenPassantable() {
+    return enPassantable;
+}
+
+void Pawn::setenPassantable(bool has_moved) {
+    enPassantable = has_moved;
+}
+
+
+bool Pawn::getMoved()
+{
+    return moved;
+}
+
+
+void Pawn::setMoved(bool has_moved)
+{
+    moved = has_moved;
 }

@@ -2,52 +2,108 @@
 
 Board::Board() {
     // Inicializar el tablero con un tamaño estándar de 8x8
-    board.resize(8, std::vector<Piece*>(8, nullptr));
+    board.resize(8, vector<Piece*>(8, nullptr));
 
     // Inicializar las piezas blancas
-    board[0][0] = new Rook(1);
-    board[0][1] = new Knight(1);
-    board[0][2] = new Bishop(1);
-    board[0][3] = new Queen(1);
-    board[0][4] = new King(1);
-    board[0][5] = new Bishop(1);
-    board[0][6] = new Knight(1);
-    board[0][7] = new Rook(1);
+    board[0][0] = new Rook(0);
+    board[0][0]->setPosition({0, 0});
+    board[0][1] = new Knight(0);
+    board[0][1]->setPosition({0, 1});
+    board[0][2] = new Bishop(0);
+    board[0][2]->setPosition({0, 2});
+    board[0][3] = new Queen(0);
+    board[0][3]->setPosition({0, 3});
+    board[0][4] = new King(0);
+    board[0][4]->setPosition({0, 4});
+    board[0][5] = new Bishop(0);
+    board[0][5]->setPosition({0, 5});
+    board[0][6] = new Knight(0);
+    board[0][6]->setPosition({0, 6});
+    board[0][7] = new Rook(0);
+    board[0][7]->setPosition({0, 7});
 
     for (int col = 0; col < 8; col++) {
-        board[1][col] = new Pawn(1);
+        board[1][col] = new Pawn(0);
+        board[1][col]->setPosition({1, col});
     }
 
     // Inicializar las piezas negras
-    board[7][0] = new Rook(2);
-    board[7][1] = new Knight(2);
-    board[7][2] = new Bishop(2);
-    board[7][3] = new Queen(2);
-    board[7][4] = new King(2);
-    board[7][5] = new Bishop(2);
-    board[7][6] = new Knight(2);
-    board[7][7] = new Rook(2);
+    board[7][0] = new Rook(1);
+    board[7][0]->setPosition({7, 0});
+    board[7][1] = new Knight(1);
+    board[7][1]->setPosition({7, 1});
+    board[7][2] = new Bishop(1);
+    board[7][2]->setPosition({7, 2});
+    board[7][3] = new Queen(1);
+    board[7][3]->setPosition({7, 3});
+    board[7][4] = new King(1);
+    board[7][4]->setPosition({7, 4});
+    board[7][5] = new Bishop(1);
+    board[7][5]->setPosition({7, 5});
+    board[7][6] = new Knight(1);
+    board[7][6]->setPosition({7, 6});
+    board[7][7] = new Rook(1);
+    board[7][7]->setPosition({7, 7});
 
     for (int col = 0; col < 8; col++) {
-        board[6][col] = new Pawn(2);
+        board[6][col] = new Pawn(1);
+        board[6][col]->setPosition({6, col});
     }
 }
 
 // Destructor
 Board::~Board() {
-    // Liberar la memoria de las piezas en el tablero
-    for (int i = 0; i < board.size(); ++i) {
-        for (int j = 0; j < board[i].size(); ++j) {
-            if (board[i][j] != nullptr) {
-                delete board[i][j];
-                board[i][j] = nullptr;
-            }
+    // Implementación del destructor
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            delete board[i][j];
+            board[i][j] = nullptr;
         }
     }
 }
 
+// Operador de asignación
 
-#include "Board.h"
+
+Board& Board::operator=(const Board& other) {
+    if (this != &other) {
+        // Limpiar el tablero actual
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                delete board[i][j];
+            }
+        }
+
+        // Copiar el tablero de other al tablero actual
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (other.board[i][j] != nullptr) {
+                    if (other.board[i][j]->getType() == "Pawn") {
+                        this->board[i][j] = new Pawn(*dynamic_cast<Pawn*>(other.board[i][j]));
+                    } else if (other.board[i][j]->getType() == "Rook") {
+                        this->board[i][j] = new Rook(*dynamic_cast<Rook*>(other.board[i][j]));
+                    } else if (other.board[i][j]->getType() == "Knight") {
+                        this->board[i][j] = new Knight(*dynamic_cast<Knight*>(other.board[i][j]));
+                    } else if (other.board[i][j]->getType() == "Bishop") {
+                        this->board[i][j] = new Bishop(*dynamic_cast<Bishop*>(other.board[i][j]));
+                    } else if (other.board[i][j]->getType() == "Queen") {
+                        this->board[i][j] = new Queen(*dynamic_cast<Queen*>(other.board[i][j]));
+                    } else if (other.board[i][j]->getType() == "King") {
+                        this->board[i][j] = new King(*dynamic_cast<King*>(other.board[i][j]));
+                    }
+                } else {
+                    this->board[i][j] = nullptr;
+                }
+            }
+        }
+    }
+    return *this;
+}
+
+Board::Board(const Board& other) {
+    // Realizar una copia profunda del tablero desde other al nuevo tablero
+    *this = other; // Esto asume que el tipo de datos utilizado para almacenar el tablero admite copia profunda (por ejemplo, un vector de vectores)
+}
 
 
 void Board::print(bool isBlackPerspective) {
@@ -64,7 +120,7 @@ void Board::print(bool isBlackPerspective) {
     if (!isBlackPerspective) {
         for (int i = 7; i >= 0; --i) {
             cout << i + 1 << " |"; // Imprimir coordenada vertical
-            for (int j = 7; j >= 0; --j) { // Cambiar el orden de las columnas
+            for (int j = 0; j <= 7; ++j) { // Cambiar el orden de las columnas
                 if (board[i][j] == nullptr) {
                     cout << "  "; // Casilla vacía
                 } else {
@@ -119,15 +175,12 @@ bool Board::checkPathClear(pair<int, int> start, pair<int, int> end) {
     // Obtener la pieza en la posición de inicio
     Piece* piece = board[start.first][start.second];
 
-    // Verificar si hay una pieza en la posición de destino
-    if (board[end.first][end.second] != nullptr) {
-        return false; // El camino no está despejado si hay una pieza en la posición de destino
-    }
 
     // Verificar el tipo de pieza y validar el movimiento
     if (piece != nullptr) {
         // Validar el movimiento dependiendo del tipo de pieza
         string pieceType = piece->getType();
+
         if (pieceType == "Pawn") {
            return true;
         }
@@ -256,6 +309,7 @@ bool Board::checkPathClear(pair<int, int> start, pair<int, int> end) {
                 return true;
             }
         }
+        return false;
     }
 
     // Si no se encuentra ninguna pieza en la posición de inicio,
@@ -270,20 +324,14 @@ bool Board::canMoveToSquare(pair<int, int> position, int color) {
         return false; // La posición está fuera del tablero
     }
 
+
     // Verificar si la casilla está ocupada por una pieza del mismo color
     Piece* piece = getPieceAt(position.first, position.second);
+    if(piece== nullptr)
+        return true;
+
     if (piece != nullptr && piece->getColor() == color) {
         return false; // La casilla está ocupada por una pieza del mismo color
-    }
-
-    // Verificar movimiento especial para el peón
-    if (piece != nullptr && piece->getType() == "Pawn") {
-        // El peón solo puede moverse una casilla hacia adelante si la casilla está vacía
-        if (color == 1) { // Si es un peón blanco
-            return (getPieceAt(position.first - 1, position.second) == nullptr);
-        } else { // Si es un peón negro
-            return (getPieceAt(position.first + 1, position.second) == nullptr);
-        }
     }
 
     return true; // La casilla está vacía o ocupada por una pieza de otro color
@@ -295,23 +343,40 @@ bool Board::isValidMove(pair<int, int> start, pair<int, int> end, int color) {
         return false; // La posición de inicio está fuera del tablero
     }
 
-    if(!canMoveToSquare(end,color))
+    if(!canMoveToSquare(end,color ))
     {
         return false;
     }
 
 
-    // Verificar si el movimiento es válido según la pieza
-    auto* piece = getPieceAt(start.first,start.second);
+    //cout<<"PATHCLEAR "<<(checkPathClear(start, end))<<endl;
 
-    if (!piece->validateMove(end)) {
-        return false; // El movimiento no es válido según las reglas de la pieza
-    }
 
 
     // Verificar si el camino está despejado para el movimiento
     if (!checkPathClear(start, end)) {
         return false; // El camino no está despejado para el movimiento
+    }
+
+    int direction = (color==0)? 1:-1;
+
+    auto* piece = getPieceAt(start.first,start.second);
+    auto* ppiece = getPieceAt(end.first,end.second);
+
+    if (piece != nullptr && piece->getType() == "Pawn") {
+        // El peón solo puede moverse una casilla hacia adelante si la casilla está vacía
+        if(ppiece != nullptr && end.first == start.first+direction && end.second==start.second)
+        {
+            return  false;
+        }
+    }
+
+
+    if(piece->getType()=="Pawn"&&abs(end.second - start.second) == 1 && end.first == start.first + direction)
+    {
+        auto* piece2 = getPieceAt(end.first,end.second);
+        if(piece2 == nullptr)return false;
+        else return true;
     }
 
     // Si todas las condiciones anteriores se cumplen, el movimiento es válido
@@ -351,17 +416,22 @@ void Board::promotePawn(pair<int, int> position, int newPieceType, int color) {
 
     // Colocar la nueva pieza en la posición del peón
     board[position.first][position.second] = newPiece;
+    newPiece->setPosition(position);
 }
 
 
-bool Board::movePiece(pair<int, int> start, pair<int, int> end, int color) {
+void Board::movePiece(pair<int, int> start, pair<int, int> end, int color ) {
     // Verificar si el movimiento es válido
-    if (!isValidMove(start, end, color)) {
-        return false; // El movimiento no es válido
-    }
 
     // Obtener la pieza en la posición de inicio
     Piece* piece = getPieceAt(start.first, start.second);
+
+    if(piece== nullptr)
+    {
+        cout<<"Invalid move.Try again\n";
+        return;
+    }
+
 
     // Mover la pieza a la posición de destino
     board[end.first][end.second] = piece;
@@ -369,18 +439,25 @@ bool Board::movePiece(pair<int, int> start, pair<int, int> end, int color) {
 
     // Actualizar la posición de la pieza
     piece->setPosition(end);
+    if (piece->getType() == "Rook") {
+        dynamic_cast<Rook*>(piece)->setMoved(true);
+    }
+    if (piece->getType() == "King") {
+        dynamic_cast<King*>(piece)->setMoved(true);
+    }
 
     // Verificar si el peón alcanzó el extremo opuesto del tablero
     if (piece->getType() == "Pawn" && (end.first == 0 || end.first == 7)) {
         // Llamar al método PromotePawn para promover el peón
         int opt=-1;
         do{
+            if(opt<=0&&opt>4){
             cout<<"Promote a Pawn (Select a number) : "
                   "\n 1. Queen "
                   "\n 2. Rook "
                   "\n 3. Bishop "
                   "\n 4. Knight \n";
-
+            }
             cin>>opt;
             if(opt<=0&&opt>4)
             {
@@ -392,9 +469,52 @@ bool Board::movePiece(pair<int, int> start, pair<int, int> end, int color) {
     }
 
 
-    return true; // El movimiento fue exitoso
+    return ; // El movimiento fue exitoso
 }
 
+pair<int, int> Board::getKingPosition(int color) {
+    // Recorrer el tablero para encontrar la posición del rey del color especificado
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            Piece* piece = board[i][j];
+            if (piece != nullptr && piece->getType() == "King" && piece->getColor() == color) {
+                return make_pair(i, j);
+            }
+        }
+    }
+    // Si no se encuentra el rey, devolver una posición inválida (-1, -1)
+    return make_pair(-1, -1);
+}
 
+Board* Board::clone() {
+    // Crear una nueva instancia de Board
+    Board* newBoard = new Board();
 
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            if (board[i][j] != nullptr) {
+                // Clonar la pieza actual en la posición [i][j]
+                Piece* clonedPiece = nullptr;
+                if (board[i][j]->getType() == "Pawn") {
+                    clonedPiece = new Pawn(*dynamic_cast<Pawn*>(board[i][j]));
+                } else if (board[i][j]->getType() == "Rook") {
+                    clonedPiece = new Rook(*dynamic_cast<Rook*>(board[i][j]));
+                } else if (board[i][j]->getType() == "Knight") {
+                    clonedPiece = new Knight(*dynamic_cast<Knight*>(board[i][j]));
+                } else if (board[i][j]->getType() == "Bishop") {
+                    clonedPiece = new Bishop(*dynamic_cast<Bishop*>(board[i][j]));
+                } else if (board[i][j]->getType() == "Queen") {
+                    clonedPiece = new Queen(*dynamic_cast<Queen*>(board[i][j]));
+                } else if (board[i][j]->getType() == "King") {
+                    clonedPiece = new King(*dynamic_cast<King*>(board[i][j]));
+                }
+                // Asignar la pieza clonada a la nueva posición en el tablero
+                newBoard->board[i][j] = clonedPiece;
+            } else {
+                newBoard->board[i][j] = nullptr;
+            }
+        }
+    }
 
+    return newBoard;
+}

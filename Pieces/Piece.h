@@ -20,6 +20,11 @@ public:
     // Destructor virtual
     virtual ~Piece();
 
+
+    Piece(const Piece& other);
+    Piece& operator=(const Piece& other);
+
+
     // Método virtual puro para validar un movimiento
     virtual bool validateMove(pair<int, int> new_position) = 0;
     virtual string getSymbol() = 0;

@@ -6,6 +6,19 @@ Piece::Piece(string type, int color) : type(type), color(color) {}
 // Destructor
 Piece::~Piece() {}
 
+// Constructor de copia
+Piece::Piece(const Piece& other) : type(other.type), color(other.color), position(other.position) {}
+
+Piece& Piece::operator=(const Piece& other) {
+    if (this != &other) {
+        type = other.type;
+        color = other.color;
+        position = other.position;
+    }
+    return *this;
+}
+
+
 // Métodos Get para acceder a los atributos
 
 string Piece::getType() {

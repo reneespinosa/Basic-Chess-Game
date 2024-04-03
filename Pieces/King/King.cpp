@@ -1,7 +1,7 @@
 #include "King.h"
 
 // Constructor
-King::King(int color) : Piece("King", color) {}
+King::King(int color) : Piece("King", color), moved(false) {}
 
 // Destructor
 King::~King() {}
@@ -30,5 +30,5 @@ void King::setMoved(bool moved_status) {
 }
 
 string King::getSymbol() {
-    return (color == 1) ? "♚" : "♔";
+    return (color == 0) ? "♚" : "♔";
 }
