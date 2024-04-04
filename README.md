@@ -1,3 +1,4 @@
+
 # 👨‍💻 **Informe sobre el Proyecto de Ajedrez en C++** :
 
 ### Introducción :
@@ -22,9 +23,12 @@ Solución Propuesta
 
 
 
-- ### UML:
+- #### UML:
 
-   - Posición para insertar la imagen del diagrama UML
+ ![umltest](https://github.com/reneespinosa/Basic-Chess-Game/assets/130246934/e8edf44b-2d1c-441d-9682-ef9fdc839326)
+
+
+ 
 
 
 - #### Clase Abstracta Piece y sus Herencias :
