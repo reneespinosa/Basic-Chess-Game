@@ -9,6 +9,7 @@ Piece::~Piece() {}
 // Constructor de copia
 Piece::Piece(const Piece& other) : type(other.type), color(other.color), position(other.position) {}
 
+/*
 Piece& Piece::operator=(const Piece& other) {
     if (this != &other) {
         type = other.type;
@@ -17,7 +18,7 @@ Piece& Piece::operator=(const Piece& other) {
     }
     return *this;
 }
-
+*/
 
 // Métodos Get para acceder a los atributos
 

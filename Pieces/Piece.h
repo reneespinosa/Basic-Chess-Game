@@ -22,7 +22,7 @@ public:
 
 
     Piece(const Piece& other);
-    Piece& operator=(const Piece& other);
+    //Piece& operator=(const Piece& other);
 
 
     // Método virtual puro para validar un movimiento

@@ -331,7 +331,7 @@ bool Game::processMove( pair<char, int> start,  pair<char, int> end) {
 
     // Verificar si hay jaque mate
 
-    registerBoard(board,currentPlayer);
+    //registerBoard(board,currentPlayer);
     // Verificar si hay empate
 
 
@@ -362,6 +362,9 @@ bool Game::processMove( pair<char, int> start,  pair<char, int> end) {
     }
 
     switchTurn();
+
+    cout.flush();
+
     return true;
 }
 
@@ -455,6 +458,7 @@ bool Game::isValidCastle(pair<int, int> end) {
     // Verificar si la torre objetivo no se ha movido
     pair<int, int> rookPos = (end.second == 2) ? make_pair(end.first, 0) : make_pair(end.first, 7);
     Piece* rookPiece = board->getPieceAt(rookPos.first, rookPos.second);
+    //cout<<rookPos.first<<" "<<rookPos.second<< endl;
     Rook* rook = dynamic_cast<Rook*>(rookPiece);
     if (!rook || rook->getMoved()) {
         return false;
@@ -512,9 +516,9 @@ void Game::makeCastle(pair<int, int> end) {
         board->movePiece(rookPos, rookEnd, currentPlayer);
     }
 
-
+/*
 void Game::registerBoard(Board* boardclone, int currentPlayer) { // Cambiar el parámetro boardclone a un puntero
     // Concatenar el jugador actual al tablero para distinguir entre tableros idénticos en diferentes turnos
     history_of_board[boardclone][players[currentPlayer].getColor()]++;
 }
-
+*/

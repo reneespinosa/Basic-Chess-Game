@@ -12,7 +12,7 @@ private:
     int currentPlayer;
     bool gameOver;
     int moveCount; // Contador de movimientos para el empate por 50 movimientos sin captura
-    map<Board*, int[2]> history_of_board; // Cambiar el tipo de datos clave del mapa
+    //map<Board*, int[2]> history_of_board; // Cambiar el tipo de datos clave del mapa
     pair<int,int> Pawn_enPassantable;
 
 public:
@@ -34,7 +34,7 @@ private:
     bool detectCastle(pair<int,int>start,pair<int,int>end); //Metodo para detectar enroque
     bool isValidCastle(pair<int, int> end);
     void makeCastle(pair<int, int> end);
-    void registerBoard(Board* boardclone, int currentPlayer);
+    //void registerBoard(Board* boardclone, int currentPlayer);
 };
 
 #endif // GAME_H

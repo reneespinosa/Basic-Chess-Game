@@ -434,6 +434,7 @@ void Board::movePiece(pair<int, int> start, pair<int, int> end, int color ) {
 
 
     // Mover la pieza a la posición de destino
+
     board[end.first][end.second] = piece;
     board[start.first][start.second] = nullptr;
 
@@ -449,21 +450,21 @@ void Board::movePiece(pair<int, int> start, pair<int, int> end, int color ) {
     // Verificar si el peón alcanzó el extremo opuesto del tablero
     if (piece->getType() == "Pawn" && (end.first == 0 || end.first == 7)) {
         // Llamar al método PromotePawn para promover el peón
-        int opt=-1;
+        int opt;
         do{
-            if(opt<=0&&opt>4){
+            cout.flush();
             cout<<"Promote a Pawn (Select a number) : "
                   "\n 1. Queen "
                   "\n 2. Rook "
                   "\n 3. Bishop "
                   "\n 4. Knight \n";
-            }
+
             cin>>opt;
-            if(opt<=0&&opt>4)
+            if(opt<=0||opt>4)
             {
                 cout<<"Incorrect number.Try again\n";
             }
-        }while(opt<=0&&opt>4);
+        }while(opt<=0||opt>4);
 
         promotePawn(end,opt, color);
     }
