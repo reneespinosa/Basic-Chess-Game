@@ -25,7 +25,8 @@ Solución Propuesta
 
 - #### UML:
 
- ![umltest](https://github.com/reneespinosa/Basic-Chess-Game/assets/130246934/e8edf44b-2d1c-441d-9682-ef9fdc839326)
+![final](https://github.com/reneespinosa/Basic-Chess-Game/assets/130246934/3b6df77f-e457-422e-98dc-fb3f8a6d7e5b)
+
  
 
 
