@@ -28,9 +28,9 @@ public:
 
 private:
     void switchTurn(); // Método para cambiar el turno al siguiente jugador
-    bool isValidMove(pair<int, int> start,pair<int, int> end, int color);  // Método para verificar si un movimiento es válido
+    bool isValidMove(pair<int, int> start,pair<int, int> end, int color,bool checkmsg);  // Método para verificar si un movimiento es válido
     bool processMove(pair<char, int> start, pair<char, int> end); // Método para procesar un movimiento dado
-    bool isCheck(Board* board1); // Método para verificar si el rey actual está en jaque
+    bool isCheck(Board* board1,bool checkmsg); // Método para verificar si el rey actual está en jaque
     bool detectCastle(pair<int,int>start,pair<int,int>end); //Metodo para detectar enroque
     bool isValidCastle(pair<int, int> end);
     void makeCastle(pair<int, int> end);

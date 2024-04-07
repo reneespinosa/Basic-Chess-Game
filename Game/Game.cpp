@@ -72,7 +72,7 @@ bool Game::isInsufficientMaterial() {
 }
 
 
-bool Game::isCheck( Board* boar) {
+bool Game::isCheck( Board* boar,bool checkmsg) {
     // Recorrer el tablero para verificar si alguna pieza del oponente puede atacar al rey
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
@@ -85,6 +85,10 @@ bool Game::isCheck( Board* boar) {
 
 
                 if (piece->validateMove(boar->getKingPosition(currentPlayer)) && boar->isValidMove(piecePosition, boar->getKingPosition(currentPlayer), (currentPlayer+1)%2  )) {
+                    if(checkmsg)
+                    {
+                        cout<<"King still in check.\n";
+                    }
                     return true; // El rey está en jaque
                 }
             }
@@ -100,7 +104,7 @@ bool Game::isCheck( Board* boar) {
 bool Game::isStalemate(int playerColor) {
     // Verificar si el rey del jugador está en jaque
 
-    if (isCheck(board)) {
+    if (isCheck(board,0)) {
         return false; // El rey está en jaque, no es un empate por ahogado
     }
 
@@ -113,13 +117,13 @@ bool Game::isStalemate(int playerColor) {
                 for (int x = 0; x < 8; ++x) {
                     for (int y = 0; y < 8; ++y) {
                         pair<int, int> newPosition = make_pair(x, y);
-                        if (isValidMove(piecePosition, newPosition, playerColor)) {
+                        if (isValidMove(piecePosition, newPosition, playerColor,0)) {
                             // Realizar una copia del tablero y simular el movimiento
                             Board * copyBoard = board->clone();
                             copyBoard->movePiece(piecePosition, newPosition, playerColor);
 
                             // Verificar si el rey del jugador está en jaque después del movimiento simulado
-                            if (!isCheck(copyBoard)) {
+                            if (!isCheck(copyBoard,0)) {
                                 return false; // El jugador tiene al menos un movimiento legal que evita el ahogado
                             }
                         }
@@ -163,7 +167,7 @@ void Game::switchTurn() {
 bool Game::isCheckmate(int playerColor) {
     // Verificar si el rey del jugador está en jaque
     pair<int, int> kingPosition = board->getKingPosition(playerColor);
-    if (!isCheck(board) ){
+    if (!isCheck(board,0) ){
         return false; // El rey no está en jaque, por lo que no es jaque mate
     }
 
@@ -176,14 +180,14 @@ bool Game::isCheckmate(int playerColor) {
                 for (int x = 0; x < 8; ++x) {
                     for (int y = 0; y < 8; ++y) {
                         pair<int, int> newPosition = make_pair(x, y);
-                        if (isValidMove(piecePosition, newPosition, playerColor )) {
+                        if (isValidMove(piecePosition, newPosition, playerColor ,0)) {
                             // Realizar una copia del tablero y simular el movimiento
                             Board* copyBoard = board->clone();
                             copyBoard->movePiece(piecePosition, newPosition, playerColor);
 
                             // Verificar si el rey del jugador sigue estando en jaque después del movimiento simulado
                             pair<int, int> kingPosAfterMove = (playerColor == 0) ? copyBoard->getKingPosition(0) : copyBoard->getKingPosition(1);
-                            if (!isCheck(copyBoard)) {
+                            if (!isCheck(copyBoard,0)) {
                                 return false; // El jugador tiene al menos un movimiento legal que evita el jaque mate
                             }
                         }
@@ -197,7 +201,7 @@ bool Game::isCheckmate(int playerColor) {
 }
 
 
-bool Game::isValidMove(pair<int, int> start,pair<int, int> end, int color) {
+bool Game::isValidMove(pair<int, int> start,pair<int, int> end, int color , bool checkmsg) {
     // Verificar si la posición de inicio está dentro del tablero
 
     // Obtener la pieza en la posición de inicio
@@ -247,7 +251,7 @@ bool Game::isValidMove(pair<int, int> start,pair<int, int> end, int color) {
     //cout<<"IS CHECK : "<<(isCheck(tempBoard))<<endl;
 
 
-    if (isCheck(tempBoard) ){
+    if (isCheck(tempBoard,checkmsg) ){
         return false; // El movimiento pone al rey en jaque
     }
 
@@ -318,7 +322,7 @@ bool Game::processMove( pair<char, int> start,  pair<char, int> end) {
 
 
         // Verificar si el movimiento es válido según las reglas del juego
-        if (!isValidMove({startRow, startCol}, {endRow, endCol}, players[currentPlayer].getColor())) {
+        if (!isValidMove({startRow, startCol}, {endRow, endCol}, players[currentPlayer].getColor(),1)) {
             cout << "Invalid move . Try again\n";
             return false;
         }
