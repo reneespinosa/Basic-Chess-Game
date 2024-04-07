@@ -16,6 +16,7 @@ int main() {
         cout << "\nMain Menu:\n";
         cout << "1. New Game\n";
         cout << "2. Quit\n";
+        cout << "3. About\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -48,8 +49,24 @@ int main() {
                 cout << "Thanks for playing Chess!\n";
                 controler = true;
                 break;
+            case '3':
+            About:
+
+
+                cout<< "\nDeveloped with Love by Rene\n";
+                cout <<"Version: 0.1 (Beta)\n";
+
+                cout<<"Thanks for playing my chess game!\n\n";
+
+                cout<<"Contact:\n";
+                cout<<"If you have any questions, suggestions, or bug reports, feel free to contact me:\n";
+                cout<<"Email:   reneespinosa.dev@gmail.com \n";
+                cout<<"Github:  reneespinosa\n";
+                break;
+
             default:
                 cout << "Invalid choice. Please enter again.\n";
+                cout.flush();
         }
     } while (!controler);
 
